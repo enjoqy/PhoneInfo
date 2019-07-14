@@ -1,14 +1,12 @@
 package org.junhi;
 
-import com.alibaba.fastjson.JSON;
-import org.junhi.domain.Information;
-import org.junhi.service.InformationService;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.util.List;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * @author junhi
@@ -18,11 +16,24 @@ public class SpringTest {
 
     @Test
     public void test01() {
-        ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContent.xml");
+        ApplicationContext ac = new ClassPathXmlApplicationContext("applicationContext.xml");
         String[] names = ac.getBeanDefinitionNames();
         for (String name : names) {
             System.out.println(name);
         }
+    }
+
+    @Test
+    public void test02(){
+        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String format = df.format(new Date());
+        System.out.println(format);
+
+        System.out.println(new Timestamp(new Date().getTime()));
+        long time = new Date().getTime();
+        System.out.println(new Timestamp(time));
+        long l = System.currentTimeMillis();
+        System.out.println(new Timestamp(l).toString());
     }
 
 

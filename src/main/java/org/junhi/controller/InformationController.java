@@ -1,8 +1,10 @@
 package org.junhi.controller;
 
+import com.alibaba.fastjson.JSON;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junhi.domain.Information;
+import org.junhi.domain.Replies;
 import org.junhi.service.InformationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,15 +30,23 @@ public class InformationController {
      */
     @RequestMapping("/findAll")
     @ResponseBody
-    public String findAll() throws JsonProcessingException {
+    public List<Information> findAll() throws JsonProcessingException {
         List<Information> informationList = informationService.findAll();
-//        String informationListString = JSON.toJSONString(informationList);
-//        System.out.println(informationListString);
-
-        ObjectMapper mapper = new ObjectMapper();
-        String s = mapper.writeValueAsString(informationList);
-        System.out.println(s);
-
-        return s;
+        informationList.forEach(x -> System.out.println(x));
+        return informationList;
     }
+
+
+    @RequestMapping("/findInformationById")
+    @ResponseBody
+    public Information findInformationById(String iId){
+        Information information = informationService.findInformationById(Integer.parseInt(iId));
+        return information;
+    }
+
+    @RequestMapping("/saveRepliesByIid")
+    public void saveRepliesByIid(Replies replies){
+        informationService.saveRepliesByIid(replies);
+    }
+
 }

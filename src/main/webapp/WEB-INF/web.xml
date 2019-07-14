@@ -59,7 +59,7 @@
     <!--设置配置文件的路径，classpath指类路径下的文件-->
     <context-param>
         <param-name>contextConfigLocation</param-name>
-        <param-value>classpath:applicationContent.xml</param-value>
+        <param-value>classpath:applicationContext.xml</param-value>
     </context-param>
 
     <!--配置前端控制器-->

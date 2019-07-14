@@ -6,9 +6,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
-import java.util.Date;
 
 /**
+ * 回复表
+ *
  * @author junhi
  * @date 2019/7/12 10:24
  */
@@ -18,9 +19,9 @@ import java.util.Date;
 @Builder
 public class Replies implements Serializable {
 
-    private Integer Rid;
+    private Integer rId;
     private String content;
-    private Date replyTime;
-    private Integer Iid;
+    private String replyTime;
+    private Integer iId;
 
 }

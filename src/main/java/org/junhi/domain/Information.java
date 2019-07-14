@@ -7,9 +7,10 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 /**
- * 资讯表
+ * 资讯表 对应多张回复表
  *
  * @author junhi
  * @date 2019/7/12 10:18
@@ -20,12 +21,14 @@ import java.util.Date;
 @Builder
 public class Information implements Serializable {
 
-    private Integer Iid;
+    private Integer iId;
     private String title;
     private String content;
     private Integer replyCount;
     private Integer viewCount;
     private String reportTime;
     private String lastPostTime;
+
+    private List<Replies> repliesList;
 
 }

@@ -36,9 +36,13 @@
     <!--    <mvc:annotation-driven/>-->
     <mvc:annotation-driven>
         <mvc:message-converters register-defaults="true">
+            <!--同时解决@ResponseBody注解返回json中文字符串乱码-->
             <bean class="org.springframework.http.converter.StringHttpMessageConverter">
                 <constructor-arg value="UTF-8"/>
             </bean>
+
+            <!--解决@ResponseBody注解返回json符串-->
+            <bean class="com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter"/>
         </mvc:message-converters>
     </mvc:annotation-driven>
 
