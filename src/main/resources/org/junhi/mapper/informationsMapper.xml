@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="org.junhi.mapper.InformationsMapper">
+    <resultMap id="informationsMapper" type="org.junhi.domain.Information">
+        <id property="iId" column="i_id"/>
+        <result property="iTitle" column="i_title"/>
+        <result property="iContent" column="i_content"/>
+        <result property="iReplyCount" column="i_reply_count"/>
+        <result property="iViewCount" column="i_view_count"/>
+        <result property="iReportTime" column="i_report_time"/>
+        <result property="iLastPostTime" column="i_last_post_time"/>
+        <!--一对多配置-->
+        <!-- property: 指的是集合属性的值, ofType：指的是集合中元素的类型 -->
+        <collection property="repliesList" column="i_id" ofType="org.junhi.domain.Replies">
+            <id property="rId" column="r_id"/>
+            <result property="rContent" column="r_content" />
+            <result property="rReplyTime" column="r_reply_time"/>
+            <result property="iId" column="i_id"/>
+        </collection>
+    </resultMap>
+
+    <!--查询所有的资讯，包含回复表，一对多-->
+    <select id="findAll" resultMap="informationsMapper" >
+        select * from informations, replies
+        where informations.i_id=replies.i_id
+        order by i_last_post_time desc;
+    </select>
+
+    <!--根据id查询informations一条数据-->
+    <select id="findInformationById" resultMap="informationsMapper">
+        select * from informations, replies
+        where informations.i_id = #{iId}
+        and informations.i_id=replies.i_id
+        order by r_reply_time desc;
+    </select>
+
+    <!--根据information表的iId保存一条记录-->
+    <insert id="saveRepliesByIid">
+        insert into replies
+        (r_content, r_reply_time, i_id)
+        values
+        (#{rContent},#{rReplyTime},#{iId});
+    </insert>
+
+    <!--评论表回复的次数+1-->
+    <update id="updateInformationsReplyCountByIid" >
+        update informations
+        set i_reply_count=(i_reply_count + 1)
+        where i_id=#{iId};
+    </update>
+
+    <!--咨询表查看的次数+1-->
+    <update id="updateInformationsViewCountByIid" >
+        update informations
+        set i_view_count=(i_view_count + 1)
+        where i_id=#{iId};
+    </update>
+
+
+
+</mapper>

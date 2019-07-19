@@ -22,12 +22,12 @@ import java.util.List;
 public class Information implements Serializable {
 
     private Integer iId;
-    private String title;
-    private String content;
-    private Integer replyCount;
-    private Integer viewCount;
-    private String reportTime;
-    private String lastPostTime;
+    private String iTitle;
+    private String iContent;
+    private Integer iReplyCount;
+    private Integer iViewCount;
+    private String iReportTime;
+    private String iLastPostTime;
 
     private List<Replies> repliesList;
 

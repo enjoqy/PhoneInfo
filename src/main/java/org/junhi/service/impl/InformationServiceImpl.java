@@ -33,17 +33,17 @@ public class InformationServiceImpl implements InformationService {
         return informationsMapper.findInformationById(iId);
     }
 
-    @Override
-    public List<Replies> findRepliesById(Integer iId) {
-        return informationsMapper.findRepliesById(iId);
-    }
+//    @Override
+//    public List<Replies> findRepliesById(Integer iId) {
+//        return informationsMapper.findRepliesById(iId);
+//    }
 
     @Override
     public void saveRepliesByIid(Replies replies) {
 //        SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 //        String format = df.format(new Date());
 //        new java.sql.Timestamp(new Date().getTime());
-        replies.setReplyTime(new Timestamp(System.currentTimeMillis()).toString());
+        replies.setRReplyTime(new Timestamp(System.currentTimeMillis()).toString());
         informationsMapper.saveRepliesByIid(replies);
         //保存回复消息的同时，回复次数+1
         informationsMapper.updateInformationsReplyCountByIid(replies);

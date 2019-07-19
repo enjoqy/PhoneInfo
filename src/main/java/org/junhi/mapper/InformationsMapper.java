@@ -19,18 +19,18 @@ public interface InformationsMapper {
      * 查询所有的资讯，包含回复表，一对多
      * @return
      */
-    @Select("select * from informations order by last_post_time desc;")
-    @Results(id="informationMap", value={
-            @Result(property = "iId", column = "i_id"),
-            @Result(property = "title", column = "title"),
-            @Result(property = "content", column = "content"),
-            @Result(property = "replyCount", column = "reply_count"),
-            @Result(property = "viewCount", column = "view_count"),
-            @Result(property = "reportTime", column = "report_time"),
-            @Result(property = "lastPostTime", column = "last_post_time"),
-            @Result(property = "repliesList", column = "i_id", many=@Many(
-                    select = "org.junhi.mapper.InformationsMapper.findRepliesById", fetchType = FetchType.LAZY))
-    })
+//    @Select("select * from informations order by last_post_time desc;")
+//    @Results(id="informationMap", value={
+//            @Result(property = "iId", column = "i_id"),
+//            @Result(property = "title", column = "title"),
+//            @Result(property = "content", column = "content"),
+//            @Result(property = "replyCount", column = "reply_count"),
+//            @Result(property = "viewCount", column = "view_count"),
+//            @Result(property = "reportTime", column = "report_time"),
+//            @Result(property = "lastPostTime", column = "last_post_time"),
+//            @Result(property = "repliesList", column = "i_id", many=@Many(
+//                    select = "org.junhi.mapper.InformationsMapper.findRepliesById", fetchType = FetchType.LAZY))
+//    })
     List<Information> findAll();
 
     /**
@@ -38,8 +38,8 @@ public interface InformationsMapper {
      * @param iId
      * @return
      */
-    @Select("select * from informations where i_id = #{iId};")
-    @ResultMap("informationMap")
+//    @Select("select * from informations where i_id = #{iId};")
+//    @ResultMap("informationMap")
     Information findInformationById(Integer iId);
 
     /**
@@ -55,35 +55,35 @@ public interface InformationsMapper {
      * @param iId
      * @return
      */
-    @Select("select * from replies where i_id = #{iId} order by reply_time desc;")
-    @Results(id="repliesMap", value={
-            @Result(property = "rId", column = "r_id"),
-            @Result(property = "content", column = "content"),
-            @Result(property = "replyTime", column = "reply_time"),
-            @Result(property = "iId", column = "i_id")
-    })
-    List<Replies> findRepliesById(Integer iId);
+//    @Select("select * from replies where i_id = #{iId} order by reply_time desc;")
+//    @Results(id="repliesMap", value={
+//            @Result(property = "rId", column = "r_id"),
+//            @Result(property = "content", column = "content"),
+//            @Result(property = "replyTime", column = "reply_time"),
+//            @Result(property = "iId", column = "i_id")
+//    })
+//    List<Replies> findRepliesById(Integer iId);
 
     /**
      * 根据information表的iId保存一条记录
      * @param replies
      */
-    @Insert("insert into replies (content, reply_time, i_id) values (#{content},#{replyTime},#{iId});")
-    @ResultMap("repliesMap")
+//    @Insert("insert into replies (content, reply_time, i_id) values (#{content},#{replyTime},#{iId});")
+//    @ResultMap("repliesMap")
     void saveRepliesByIid(Replies replies);
 
     /**
      * 咨询表查看的次数+1
      * @param iId
      */
-    @Update("update informations set view_count=(view_count + 1) where i_id=#{iId};  ")
+//    @Update("update informations set view_count=(view_count + 1) where i_id=#{iId};  ")
     void updateInformationsViewCountByIid(Integer iId);
 
     /**
-     * 咨询表回复的次数+1
+     * 评论表回复的次数+1
      * @param iId
      */
-    @Update("update informations set reply_count=(reply_count + 1) where i_id=#{iId};  ")
+//    @Update("update informations set reply_count=(reply_count + 1) where i_id=#{iId};  ")
     void updateInformationsReplyCountByIid(Replies iId);
 
 }

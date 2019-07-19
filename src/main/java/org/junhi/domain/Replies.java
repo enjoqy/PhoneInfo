@@ -20,8 +20,8 @@ import java.io.Serializable;
 public class Replies implements Serializable {
 
     private Integer rId;
-    private String content;
-    private String replyTime;
+    private String rContent;
+    private String rReplyTime;
     private Integer iId;
 
 }

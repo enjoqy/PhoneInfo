@@ -29,7 +29,7 @@ public interface InformationService {
      * @param iId
      * @return
      */
-    List<Replies> findRepliesById(Integer iId);
+//    List<Replies> findRepliesById(Integer iId);
 
     /**
      * 保存一条回复的消息
