@@ -37,7 +37,7 @@ public class InformationController {
     }
 
 
-    @RequestMapping("/findInformationById")
+    @RequestMapping(value = "/findInformationById")
     @ResponseBody
     public Information findInformationById(String iId){
         Information information = informationService.findInformationById(Integer.parseInt(iId));
